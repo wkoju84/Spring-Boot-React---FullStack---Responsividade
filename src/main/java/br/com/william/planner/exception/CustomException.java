@@ -20,4 +20,10 @@ public class CustomException {
         ErrorResponse errorResponse = ErrorResponse.invalidArgumentsError(fieldError);
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
     }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<ErrorResponse> handleRuntimeException(RuntimeException ex){
+        ErrorResponse errorResponse = ErrorResponse.internalError(ex);
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+    }
 }

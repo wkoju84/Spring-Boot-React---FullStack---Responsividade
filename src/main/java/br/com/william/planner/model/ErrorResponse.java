@@ -20,4 +20,12 @@ public class ErrorResponse {
                 .message(fieldError.getDefaultMessage())
                 .build();
     }
+
+    public static ErrorResponse internalError(RuntimeException ex){
+
+        return ErrorResponse.builder()
+                .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                .message(ex.getMessage())
+                .build();
+    }
 }
