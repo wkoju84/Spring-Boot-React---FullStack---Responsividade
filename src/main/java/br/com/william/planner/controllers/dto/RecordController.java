@@ -3,6 +3,7 @@ package br.com.william.planner.controllers.dto;
 import br.com.william.planner.controllers.converters.RecordDTOConverter;
 import br.com.william.planner.model.Record;
 import br.com.william.planner.services.RecordService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -20,7 +21,7 @@ public class RecordController {
     private final RecordDTOConverter converter;
 
     @PostMapping
-    public RecordDTO save(@RequestBody RecordDTO record){
+    public RecordDTO save(@RequestBody @Valid RecordDTO record){
         return converter.convert(recordService.save(converter.convert(record)));
     }
 
